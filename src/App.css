@@ -15,12 +15,22 @@
   background-size: cover;
 } */
 
+body {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+}
+
 .App {
   background-color: #c3c3e4;
-  padding: 48px;
+  /* padding: 90px 0px; */
+  padding-top: 90px;
+  padding-bottom: 60px;
   border-radius: 22px;
 }
 
 button {
   margin-top: 20px;
+}
+
+button:active {
+  background-color: #fff;
 }

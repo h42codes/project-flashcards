@@ -1,6 +1,7 @@
 .card-container {
-  width: 700px;
-  height: 400px;
+  width: 600px;
+  height: 360px;
+  margin: 10px 80px;
 }
 
 .card {
@@ -27,10 +28,17 @@
   border-radius: 32px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  font-weight: 500;
+  padding: 80px;
 }
 
 .card-front {
   background-color: #6464b9;
+  color: #fff;
 }
 
 .card-back {
