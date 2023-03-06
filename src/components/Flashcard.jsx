@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Flashcard.css";
 
-const Flashcard = () => {
+const Flashcard = ({ data }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleCardClick = () => {
@@ -13,8 +13,8 @@ const Flashcard = () => {
         className={`card ${isFlipped ? "flipped" : ""}`}
         onClick={handleCardClick}
       >
-        <div className="card-front">QUESTION</div>
-        <div className="card-back">ANSWER</div>
+        <div className="card-front">{data.question}</div>
+        <div className="card-back">{data.answer}</div>
       </div>
     </div>
   );

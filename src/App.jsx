@@ -5,6 +5,7 @@ import triviaData from "./data/triviaData.json";
 // import triviaData from "./data/triviaData.jsx";
 
 function App() {
+  // refactor it because getting a random index rerenders the entire component
   const [cardIndex, setCardIndex] = useState(0);
 
   const getRandomIndex = () => {
