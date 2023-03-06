@@ -5,9 +5,6 @@ import triviaData from "./data/triviaData.json";
 // import triviaData from "./data/triviaData.jsx";
 
 function App() {
-  // refactor it because getting a random index rerenders the entire component
-  const [cardIndex, setCardIndex] = useState(0);
-
   const getRandomIndex = () => {
     let nextRandomIndex;
     do {
@@ -17,18 +14,14 @@ function App() {
     return nextRandomIndex;
   };
 
-  const handleNextClick = () => {
-    setCardIndex(getRandomIndex());
-  };
-
   return (
     <div className="App">
       <h1>⚡️ Harry Potter Trivia ⚡️</h1>
       <h3>How big of a fan are you? Test your knowledge!</h3>
       <p>Number of cards: {triviaData.length}</p>
       {/* <p>Cards marked as pass</p> */}
-      <Flashcard data={triviaData[cardIndex]} />
-      <button onClick={handleNextClick}>⭢</button>
+      <Flashcard data={triviaData} />
+
       {/* <footer>
         Photo by{" "}
         <a href="https://unsplash.com/@bitu2104?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">
