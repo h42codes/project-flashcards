@@ -7,8 +7,10 @@ function App() {
       <h1>⚡️ Harry Potter Trivia ⚡️</h1>
       <h3>How big of a fan are you? Test your knowledge!</h3>
       <p>Number of cards: </p>
-      <p>Cards marked as pass?</p>
+      {/* <p>Cards marked as pass</p> */}
+
       <Flashcard />
+
       <button>⭢</button>
       {/* <footer>
         Photo by{" "}

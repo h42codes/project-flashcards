@@ -1,3 +1,8 @@
+* {
+  /* outline: 1px solid red; */
+  box-sizing: border-box;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -9,3 +14,13 @@
   background-image: url("../tuyen-vo-tS-jh0M6JoA-unsplash.jpg");
   background-size: cover;
 } */
+
+.App {
+  background-color: #c3c3e4;
+  padding: 48px;
+  border-radius: 22px;
+}
+
+button {
+  margin-top: 20px;
+}
