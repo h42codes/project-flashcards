@@ -29,7 +29,9 @@ const Flashcard = ({ data }) => {
         onClick={handleCardClick}
       >
         <div className="card-front">{data[cardIndex].question}</div>
-        <div className="card-back">{data[cardIndex].answer}</div>
+        <div className="card-back">
+          {isFlipped ? data[cardIndex].answer : ""}
+        </div>
       </div>
       <button onClick={handleNextClick}>⭢</button>
     </div>
