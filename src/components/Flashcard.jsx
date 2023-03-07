@@ -28,7 +28,18 @@ const Flashcard = ({ data }) => {
         className={`card ${isFlipped ? "flipped" : ""}`}
         onClick={handleCardClick}
       >
-        <div className="card-front">{data[cardIndex].question}</div>
+        {data[cardIndex].isImage ? (
+          <div className={`card-front ${data[cardIndex].category}`}>
+            <div className="category">{data[cardIndex].category}</div>
+            <img src={data[cardIndex].question}></img>
+          </div>
+        ) : (
+          <div className={`card-front ${data[cardIndex].category}`}>
+            <div className="category">{data[cardIndex].category}</div>
+            <div className="question">{data[cardIndex].question}</div>
+          </div>
+        )}
+
         <div className="card-back">
           {isFlipped ? data[cardIndex].answer : ""}
         </div>
