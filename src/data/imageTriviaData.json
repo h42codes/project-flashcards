@@ -3,37 +3,43 @@
     "id": 0,
     "question": "/quiz-image/remus_lupin.jpg",
     "answer": "Remus Lupin",
-    "isImage": true
+    "isImage": true,
+    "category": "easy"
   },
   {
     "id": 1,
     "question": "/quiz-image/mrs_figg.jpg",
     "answer": "Mrs. Figg",
-    "isImage": true
+    "isImage": true,
+    "category": "hard"
   },
   {
     "id": 2,
     "question": "/quiz-image/mafalda_hopkirk.jpg",
     "answer": "Mafalda Hopkirk",
-    "isImage": true
+    "isImage": true,
+    "category": "hard"
   },
   {
     "id": 3,
     "question": "/quiz-image/dean_thomas.jpg",
     "answer": "Dean Thomas",
-    "isImage": true
+    "isImage": true,
+    "category": "easy"
   },
   {
     "id": 4,
     "question": "/quiz-image/kingsely_shacklebolt.jpg",
     "answer": "Kingsely Shacklebolt",
-    "isImage": true
+    "isImage": true,
+    "category": "medium"
   },
   {
     "id": 5,
     "question": "/quiz-image/nymphadora_tonks.jpg",
     "answer": "Nymphadora Tonks",
-    "isImage": true
+    "isImage": true,
+    "category": "easy"
   }
 ]
 
