@@ -29,6 +29,7 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   position: absolute;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 28px;
@@ -37,7 +38,7 @@
 }
 
 .card-front {
-  background-color: #6464b9;
+  /* background-color: #6464b9; */
   color: #fff;
 }
 
@@ -48,4 +49,27 @@
 
 .flipped {
   --rotate-X: 180deg;
+}
+
+.card-front img {
+  height: 300px;
+  border-radius: 5px;
+  margin-top: 8px;
+}
+
+.hard {
+  background-color: #2d2d71;
+}
+
+.medium {
+  background-color: #3a3a94;
+}
+
+.easy {
+  background-color: #6464b9;
+}
+
+.category {
+  font-size: 18px;
+  color: #a8a8ff99;
 }
