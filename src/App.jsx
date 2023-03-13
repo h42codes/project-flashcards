@@ -20,6 +20,8 @@ function App() {
         return triviaData.filter((data) => !data.isImage);
       case "imageOnly":
         return triviaData.filter((data) => data.isImage);
+      case "shuffled":
+        return shuffleArray(triviaData);
       default:
         return triviaData;
     }
@@ -30,6 +32,10 @@ function App() {
     setUserGuess("");
     setIsCorrect(null);
   }, [cardIndex, dataFilter]);
+
+  // useEffect(() => {
+  //   setCardIndex(0);
+  // }, [dataFilter]);
 
   const getAll = useCallback(() => {
     setCardFilter(null);
@@ -45,6 +51,23 @@ function App() {
     setCardFilter("imageOnly");
     setCardIndex(0);
   }, []);
+
+  const getShuffled = useCallback(() => {
+    setCardFilter("shuffled");
+    setCardIndex(0);
+  }, []);
+
+  function shuffleArray(array) {
+    const shuffled_array = array.slice();
+    for (let i = shuffled_array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled_array[i], shuffled_array[j]] = [
+        shuffled_array[j],
+        shuffled_array[i],
+      ];
+    }
+    return shuffled_array;
+  }
 
   const getRandomIndex = () => {
     let nextRandomIndex;
@@ -104,6 +127,7 @@ function App() {
         <button onClick={getAll}>All</button>
         <button onClick={getTextOnly}>Text Only</button>
         <button onClick={getImageOnly}>Image Only</button>
+        <button onClick={getShuffled}>Shuffle</button>
       </div>
       {/* <button onClick={handleSwitch}>
         Switch to {gameData == triviaData ? "Image" : "Text"} Only Mode
@@ -122,9 +146,13 @@ function App() {
         checkAnswer={checkAnswer}
       />
       <div className="button-container">
-        <button onClick={handlePrevClick}>⭠</button>
-        <button onClick={handleNextClick}>⭢</button>
-        <button onClick={handleShuffleClick}>Shuffle</button>
+        <div className="top-container">
+          <button onClick={handlePrevClick}>⭠</button>
+          <button onClick={handleNextClick}>⭢</button>
+        </div>
+        <div className="bottom-container">
+          <button onClick={handleShuffleClick}>Get Random Card</button>
+        </div>
       </div>
 
       {/* <footer>
