@@ -30,8 +30,11 @@ body {
 button {
   /* margin-top: 20px; */
   margin: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-button:active {
-  background-color: #fff;
+button:active,
+button:hover {
+  /* background-color: #fff; */
+  background-color: #ededed;
 }
