@@ -11,8 +11,9 @@ function App() {
   const [isFlipped, setIsFlipped] = useState(false);
   const [userGuess, setUserGuess] = useState("");
   const [isCorrect, setIsCorrect] = useState(null);
-  const [currentStreak, setCurrentStreak] = useState(0);
+  // const [currentStreak, setCurrentStreak] = useState(0);
   const [longestStreak, setLongestStreak] = useState(0);
+  const [currentStreakIds, setCurrentStreakIds] = useState(new Set());
 
   const gameData = useMemo(() => {
     switch (dataFilter) {
@@ -103,15 +104,21 @@ function App() {
   };
 
   const checkAnswer = () => {
-    if (userGuess.toLowerCase() === gameData[cardIndex].answer.toLowerCase()) {
+    if (
+      userGuess.toLowerCase().replace(/\s/g, "") ===
+      gameData[cardIndex].answer.toLowerCase().replace(/\s/g, "")
+    ) {
       setIsCorrect(true);
-      setCurrentStreak((currentStreak) => currentStreak + 1);
-      if (currentStreak + 1 > longestStreak) {
-        setLongestStreak(currentStreak + 1);
+      setCurrentStreakIds((currentStreakIds) => {
+        currentStreakIds.add(gameData[cardIndex].id);
+        return currentStreakIds;
+      });
+      if (currentStreakIds.size + 1 > longestStreak) {
+        setLongestStreak(currentStreakIds.size + 1);
       }
     } else {
       setIsCorrect(false);
-      setCurrentStreak(0);
+      setCurrentStreakIds(new Set());
     }
   };
 
@@ -121,7 +128,8 @@ function App() {
       <h3>How big of a Harry Potter fan are you? Test your knowledge!</h3>
       <p>Number of cards: {gameData.length}</p>
       <p>
-        Current Streak: {currentStreak} Longest Streak: {longestStreak}
+        Current Streak: {currentStreakIds ? currentStreakIds.size : 0} Longest
+        Streak: {longestStreak}
       </p>
       <div className="button-container">
         <button onClick={getAll}>All</button>
