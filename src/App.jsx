@@ -7,6 +7,7 @@ function App() {
   // const [gameData, setGameData] = useState(triviaData);
   const [cardIndex, setCardIndex] = useState(0);
   const [dataFilter, setCardFilter] = useState(null);
+  const [isFlipped, setIsFlipped] = useState(false);
 
   const gameData = useMemo(() => {
     switch (dataFilter) {
@@ -18,6 +19,8 @@ function App() {
         return triviaData;
     }
   }, [dataFilter]);
+
+  useEffect(() => setIsFlipped(false), [cardIndex, dataFilter]);
 
   const getAll = useCallback(() => {
     setCardFilter(null);
@@ -62,13 +65,6 @@ function App() {
   const handleShuffleClick = () => {
     setCardIndex(getRandomIndex());
   };
-
-  const [isFlipped, setIsFlipped] = useState(false);
-  // const handleFlip = () => {
-  //   setIsFlipped
-  // }
-
-  useEffect(() => setIsFlipped(false), [cardIndex]);
 
   const handleCardClick = () => {
     setIsFlipped(!isFlipped);
