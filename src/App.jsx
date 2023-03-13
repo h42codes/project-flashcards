@@ -9,6 +9,8 @@ function App() {
   const [cardIndex, setCardIndex] = useState(0);
   const [dataFilter, setCardFilter] = useState(null);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [userGuess, setUserGuess] = useState("");
+  const [isCorrect, setIsCorrect] = useState(null);
 
   const gameData = useMemo(() => {
     switch (dataFilter) {
@@ -21,7 +23,11 @@ function App() {
     }
   }, [dataFilter]);
 
-  useEffect(() => setIsFlipped(false), [cardIndex, dataFilter]);
+  useEffect(() => {
+    setIsFlipped(false);
+    setUserGuess("");
+    setIsCorrect(null);
+  }, [cardIndex, dataFilter]);
 
   const getAll = useCallback(() => {
     setCardFilter(null);
@@ -71,6 +77,14 @@ function App() {
     setIsFlipped(!isFlipped);
   };
 
+  const checkAnswer = () => {
+    if (userGuess.toLowerCase() === gameData[cardIndex].answer.toLowerCase()) {
+      setIsCorrect(true);
+    } else {
+      setIsCorrect(false);
+    }
+  };
+
   return (
     <div className="App">
       <h1>⚡️ Harry Potter Trivia ⚡️</h1>
@@ -91,7 +105,12 @@ function App() {
         isFlipped={isFlipped}
         handleCardClick={handleCardClick}
       />
-      <Guess answer={gameData[cardIndex].answer} />
+      <Guess
+        userGuess={userGuess}
+        setUserGuess={setUserGuess}
+        isCorrect={isCorrect}
+        checkAnswer={checkAnswer}
+      />
       <div className="button-container">
         <button onClick={handlePrevClick}>⭠</button>
         <button onClick={handleNextClick}>⭢</button>
