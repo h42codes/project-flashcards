@@ -11,6 +11,8 @@ function App() {
   const [isFlipped, setIsFlipped] = useState(false);
   const [userGuess, setUserGuess] = useState("");
   const [isCorrect, setIsCorrect] = useState(null);
+  const [currentStreak, setCurrentStreak] = useState(0);
+  const [longestStreak, setLongestStreak] = useState(0);
 
   const gameData = useMemo(() => {
     switch (dataFilter) {
@@ -80,8 +82,13 @@ function App() {
   const checkAnswer = () => {
     if (userGuess.toLowerCase() === gameData[cardIndex].answer.toLowerCase()) {
       setIsCorrect(true);
+      setCurrentStreak((currentStreak) => currentStreak + 1);
+      if (currentStreak + 1 > longestStreak) {
+        setLongestStreak(currentStreak + 1);
+      }
     } else {
       setIsCorrect(false);
+      setCurrentStreak(0);
     }
   };
 
@@ -90,6 +97,9 @@ function App() {
       <h1>⚡️ Harry Potter Trivia ⚡️</h1>
       <h3>How big of a Harry Potter fan are you? Test your knowledge!</h3>
       <p>Number of cards: {gameData.length}</p>
+      <p>
+        Current Streak: {currentStreak} Longest Streak: {longestStreak}
+      </p>
       <div className="button-container">
         <button onClick={getAll}>All</button>
         <button onClick={getTextOnly}>Text Only</button>
