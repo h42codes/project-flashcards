@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import "./App.css";
 import Flashcard from "./components/Flashcard";
+import Guess from "./components/Guess";
 import triviaData from "./data/triviaData.json";
 
 function App() {
@@ -90,6 +91,7 @@ function App() {
         isFlipped={isFlipped}
         handleCardClick={handleCardClick}
       />
+      <Guess answer={gameData[cardIndex].answer} />
       <div className="button-container">
         <button onClick={handlePrevClick}>⭠</button>
         <button onClick={handleNextClick}>⭢</button>

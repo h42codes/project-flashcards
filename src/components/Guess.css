@@ -1,0 +1,16 @@
+.Guess {
+  /* background-color: grey; */
+  margin-bottom: 10px;
+  display: flex;
+  /* // space-evenly */
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  width: 40%;
+  padding: 10px;
+  margin: 0 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
