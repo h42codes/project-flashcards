@@ -1,8 +1,10 @@
 import { useState } from "react";
 import "./Guess.css";
 
-const Guess = ({ answer }) => {
-  const [userGuess, setUserGuess] = useState("");
+const Guess = ({ userGuess, setUserGuess, isCorrect, checkAnswer }) => {
+  // const [userGuess, setUserGuess] = useState("");
+  // const [isCorrect, setIsCorrect] = useState(null);
+
   return (
     <div className="Guess">
       <span>Guess the answer</span>
@@ -11,8 +13,13 @@ const Guess = ({ answer }) => {
         type="text"
         placeholder="Place your answer here"
         onChange={(event) => setUserGuess(event.target.value)}
+        className={
+          isCorrect === true ? "correct" : isCorrect === false ? "wrong" : null
+        }
       />
-      <button type="submit">Submit</button>
+      <button type="submit" onClick={checkAnswer}>
+        Submit
+      </button>
     </div>
   );
 };
