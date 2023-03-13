@@ -1,18 +1,77 @@
-import { useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import "./App.css";
 import Flashcard from "./components/Flashcard";
 import triviaData from "./data/triviaData.json";
-import imageTriviaData from "./data/imageTriviaData.json";
-// import triviaData from "./data/triviaData.jsx";
 
 function App() {
-  const [gameData, setGameData] = useState(triviaData);
-  const handleSwitch = () => {
-    if (gameData == triviaData) {
-      setGameData(imageTriviaData);
-    } else {
-      setGameData(triviaData);
+  // const [gameData, setGameData] = useState(triviaData);
+  const [cardIndex, setCardIndex] = useState(0);
+  const [dataFilter, setCardFilter] = useState(null);
+
+  const gameData = useMemo(() => {
+    switch (dataFilter) {
+      case "textOnly":
+        return triviaData.filter((data) => !data.isImage);
+      case "imageOnly":
+        return triviaData.filter((data) => data.isImage);
+      default:
+        return triviaData;
     }
+  }, [dataFilter]);
+
+  const getAll = useCallback(() => {
+    setCardFilter(null);
+    setCardIndex(0);
+  }, []);
+
+  const getTextOnly = useCallback(() => {
+    setCardFilter("textOnly");
+    setCardIndex(0);
+  }, []);
+
+  const getImageOnly = useCallback(() => {
+    setCardFilter("imageOnly");
+    setCardIndex(0);
+  }, []);
+
+  const getRandomIndex = () => {
+    let nextRandomIndex;
+    do {
+      nextRandomIndex = Math.floor(Math.random() * gameData.length);
+    } while (nextRandomIndex === cardIndex);
+    setCardIndex(nextRandomIndex);
+    return nextRandomIndex;
+  };
+
+  const handleNextClick = () => {
+    let newIndex = cardIndex + 1;
+    if (newIndex == gameData.length) {
+      newIndex = 0;
+    }
+    setCardIndex((cardIndex + 1) % gameData.length);
+  };
+
+  const handlePrevClick = () => {
+    let newIndex = cardIndex - 1;
+    if (newIndex == -1) {
+      newIndex = gameData.length - 1;
+    }
+    setCardIndex(newIndex);
+  };
+
+  const handleShuffleClick = () => {
+    setCardIndex(getRandomIndex());
+  };
+
+  const [isFlipped, setIsFlipped] = useState(false);
+  // const handleFlip = () => {
+  //   setIsFlipped
+  // }
+
+  useEffect(() => setIsFlipped(false), [cardIndex]);
+
+  const handleCardClick = () => {
+    setIsFlipped(!isFlipped);
   };
 
   return (
@@ -20,11 +79,26 @@ function App() {
       <h1>⚡️ Harry Potter Trivia ⚡️</h1>
       <h3>How big of a Harry Potter fan are you? Test your knowledge!</h3>
       <p>Number of cards: {gameData.length}</p>
-      <button onClick={handleSwitch}>
+      <div className="button-container">
+        <button onClick={getAll}>All</button>
+        <button onClick={getTextOnly}>Text Only</button>
+        <button onClick={getImageOnly}>Image Only</button>
+      </div>
+      {/* <button onClick={handleSwitch}>
         Switch to {gameData == triviaData ? "Image" : "Text"} Only Mode
-      </button>
+      </button> */}
       {/* <p>Cards marked as pass</p> */}
-      <Flashcard data={gameData} />
+      {/* <Flashcard data={gameData} /> */}
+      <Flashcard
+        card={gameData[cardIndex]}
+        isFlipped={isFlipped}
+        handleCardClick={handleCardClick}
+      />
+      <div className="button-container">
+        <button onClick={handlePrevClick}>⭠</button>
+        <button onClick={handleNextClick}>⭢</button>
+        <button onClick={handleShuffleClick}>Shuffle</button>
+      </div>
 
       {/* <footer>
         Photo by{" "}

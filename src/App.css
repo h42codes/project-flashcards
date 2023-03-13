@@ -1,5 +1,5 @@
 * {
-  /* outline: 1px solid red; */
+  outline: 1px solid red;
   box-sizing: border-box;
 }
 
@@ -28,7 +28,8 @@ body {
 }
 
 button {
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  margin: 5px;
 }
 
 button:active {
