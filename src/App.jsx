@@ -109,6 +109,7 @@ function App() {
       gameData[cardIndex].answer.toLowerCase().replace(/\s/g, "")
     ) {
       setIsCorrect(true);
+      setIsFlipped(true);
       setCurrentStreakIds((currentStreakIds) => {
         currentStreakIds.add(gameData[cardIndex].id);
         return currentStreakIds;
